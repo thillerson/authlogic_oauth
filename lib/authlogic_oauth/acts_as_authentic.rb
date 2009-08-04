@@ -82,7 +82,7 @@ module AuthlogicOauth
 
       def authenticating_with_oauth?
         # Initial request when user presses one of the button helpers
-        (session_class.controller.params && !session_class.controller.params[:register_with_oauth].blank?) ||
+        (session_class && session_class.controller && session_class.controller.params && !session_class.controller.params[:register_with_oauth].blank?) ||
         # When the oauth provider responds and we made the initial request
         (oauth_response && session_class.controller.session && session_class.controller.session[:oauth_request_class] == self.class.name)
       end
